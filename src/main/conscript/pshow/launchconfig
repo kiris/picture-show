@@ -4,9 +4,10 @@
   name: pictureshow-conscript
   class: pictureshow.PictureShowScript
 [scala]
-  version: 2.8.1
+  version: 2.9.1
 [repositories]
   less:http://repo.lessis.me
+  typesafe-repo: http://repo.typesafe.com/typesafe/ivy-releases/
   local
   maven-local
   scala-tools-releases

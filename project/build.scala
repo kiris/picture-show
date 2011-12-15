@@ -2,13 +2,13 @@ import sbt._
 import Keys._
 
 object Build extends sbt.Build {
-  
+
   import Deps._
 
   lazy val standardSettings = Defaults.defaultSettings ++ Seq(
     organization := "me.lessis",
     version := "0.1.0-SNAPSHOT",
-    scalaVersion := "2.8.1",
+    scalaVersion := "2.9.1",
     libraryDependencies += knockoff
   )
 
@@ -23,18 +23,18 @@ object Build extends sbt.Build {
     "PictureShow Core",
     file("core"),
     settings = standardSettings ++ Seq(
-      libraryDependencies ++= Seq(codec, specs) 
+      libraryDependencies ++= Seq(codec, specs)
     )
   )
 
   /** serves generated html on a configurable port */
   lazy val server = Project(
     "PictureShow Server",
-    file("server"),  
+    file("server"),
     settings = standardSettings ++ Seq(
       libraryDependencies ++= Seq(uff, ufj)
     ),
-    dependencies = Seq(core)  
+    dependencies = Seq(core)
   )
 
   /** caches generated html to disk */
@@ -47,7 +47,7 @@ object Build extends sbt.Build {
 
   /** command line client, pshow */
   lazy val conscript = Project(
-    "PictureShow Conscript", 
+    "PictureShow Conscript",
     file("conscript"),
     settings = standardSettings ++ Seq(
       resolvers += "databinder" at "https://databinder.net/repo/",
@@ -57,12 +57,12 @@ object Build extends sbt.Build {
   )
 
   object Deps {
-    val knockoff = "net.databinder" %% "pamflet-knockoff" % "0.2.5"
+    val knockoff = "net.databinder" %% "pamflet-knockoff" % "0.3.0"
     val codec = "commons-codec" % "commons-codec" % "1.4"
-    val specs = "org.scala-tools.testing" %% "specs" % "1.6.8" % "test"
+    val specs = "org.scala-tools.testing" %% "specs" % "1.6.9" % "test"
     val uf_version = "0.5.1"
     val uff = "net.databinder" %% "unfiltered-filter" % uf_version
     val ufj = "net.databinder" %% "unfiltered-jetty" % uf_version
-    val launch = "org.scala-tools.sbt" % "launcher-interface" % "0.7.4" % "provided"
+    val launch = "org.scala-tools.sbt" % "launcher-interface_2.9.1" % "0.11.2" % "provided"
   }
 }
